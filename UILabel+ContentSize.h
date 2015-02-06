@@ -11,5 +11,6 @@
 @interface UILabel (ContentSize)
 
 - (CGSize)contentSize;
+- (BOOL)isTruncated;
 
 @end

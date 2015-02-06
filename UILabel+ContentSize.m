@@ -21,4 +21,12 @@
     return contentFrame.size;
 }
 
+- (BOOL)isTruncated
+{
+    CGSize size = [self.text boundingRectWithSize:CGSizeMake(self.bounds.size.width, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : self.font} context:nil].size;
+    
+    return (size.height > self.frame.size.height);
+}
+
+
 @end
