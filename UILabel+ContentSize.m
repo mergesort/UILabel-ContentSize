@@ -11,14 +11,19 @@
 
 @implementation UILabel (ContentSize)
 
-- (CGSize)contentSize
+- (CGSize)contentSizeForWidth:(CGFloat)width
 {
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     paragraphStyle.lineBreakMode = self.lineBreakMode;
     paragraphStyle.alignment = self.textAlignment;
     
-    CGRect contentFrame = [self.text boundingRectWithSize:CGSizeMake(CGRectGetWidth(self.bounds), MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:@{ NSFontAttributeName : self.font } context:nil];
+    CGRect contentFrame = [self.text boundingRectWithSize:CGSizeMake(width, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:@{ NSFontAttributeName : self.font } context:nil];
     return contentFrame.size;
+}
+
+- (CGSize)contentSize
+{
+    return [self contentSizeForWidth:CGRectGetWidth(self.bounds)];
 }
 
 - (BOOL)isTruncated
@@ -27,6 +32,5 @@
     
     return (size.height > self.frame.size.height);
 }
-
 
 @end
