@@ -10,6 +10,7 @@
 
 @interface UILabel (ContentSize)
 
+- (CGSize)contentSizeForWidth:(CGFloat)width;
 - (CGSize)contentSize;
 - (BOOL)isTruncated;
 
